@@ -60,4 +60,19 @@ public abstract class Paquete implements Enviable {
         }
         this.destino = destino;
     }
+    
+
+    public void actualizarDestino(String nuevoDestino){
+        setDestino(nuevoDestino);
+    }
+
+    public void actualizarDestino(String nuevoDestino, boolean express){
+        if (express) {
+            setDestino(nuevoDestino + " [PRIORITARIO]");
+        }else{
+            setDestino(nuevoDestino);
+        }
+        
+    }
+    public abstract String obtenerDetalle();
 }
