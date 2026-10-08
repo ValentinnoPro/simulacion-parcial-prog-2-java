@@ -7,7 +7,7 @@ public class PaqueteFragil extends Paquete{
 
     public PaqueteFragil(String codigoTrack,double pesoKg,String destino,String nivelProteccion){
         super(codigoTrack,pesoKg,destino);
-        setNivelProteccion(String nivelProteccion);
+        setNivelProteccion(nivelProteccion);
     }
 
     //Getter
@@ -17,20 +17,21 @@ public class PaqueteFragil extends Paquete{
 
     //Setter
     public void setNivelProteccion(String nivelProteccion){
-        if(nivelProteccion == null || 
-        nivelProteccion.equalsIgnoreCase("alta")||nivelProteccion.equalsIgnoreCase("media")||nivelProteccion.equalsIgnoreCase("baja")){
+        if(nivelProteccion != null 
+        &&(nivelProteccion.equalsIgnoreCase("alta")||nivelProteccion.equalsIgnoreCase("media")||nivelProteccion.equalsIgnoreCase("baja"))){
             this.nivelProteccion = nivelProteccion;
         }else{
             throw new IllegalArgumentException("Ingrese un nivel proteccion correcto.");
+            
         }
     }
     //Implementacion de metodos:
     @Override 
     public double calcularCostoEnvio(){
         double base = 1000 *getPesoKg();
-        if (getNivelProteccion() == "alta") {
+        if (getNivelProteccion().equalsIgnoreCase("alta")){
             return  base *1.30;
-        }else if (getNivelProteccion()=="media") {
+        }else if (getNivelProteccion().equalsIgnoreCase("media")) {
             return base * 1.15;
         }else{
             return base;
@@ -44,6 +45,6 @@ public class PaqueteFragil extends Paquete{
 
     @Override 
     public String obtenerDetalle(){
-        return "Codigo: "+getCodigoTrack()+ ". Destino: "+getDestino()+". Peso: "+getPesoKg()+"Nivel Proteccion: "+ getNivelProteccion();
+        return "Codigo: "+getCodigoTrack()+ ". Destino: "+getDestino()+". Peso: "+getPesoKg()+". Nivel Proteccion: "+ getNivelProteccion();
     }
 }
